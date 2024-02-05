@@ -57,7 +57,7 @@ function Top() {
   const fetchUsers = async () => {
     try {
       const data = await fetch(
-        `http://localhost:8000/api/search?email=${searchTerm}`,
+        `https://chatapi-d2fo.onrender.com/api/search?email=${searchTerm}`,
         {
           method: "GET",
           headers: {
@@ -79,7 +79,7 @@ function Top() {
   const updateGroupChat = async () => {
     try {
       const data = await fetch(
-        `http://localhost:8000/api/addgroup/${currentChat._id}`,
+        `https://chatapi-d2fo.onrender.com/api/addgroup/${currentChat._id}`,
         {
           method: "PUT",
           headers: {
@@ -110,7 +110,7 @@ function Top() {
     updateUser.delete(item._id);
     setUserSet(new Set(updateUser));
     const data = await fetch(
-      `http://localhost:8000/api/removegroup/${currentChat._id}`,
+      `https://chatapi-d2fo.onrender.com/api/removegroup/${currentChat._id}`,
       {
         method: "PUT",
         headers: {

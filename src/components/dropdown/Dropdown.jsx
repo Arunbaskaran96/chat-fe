@@ -26,11 +26,7 @@ export default function Dropdown() {
       </div>
       <Modal opened={opened} onClose={close} title="Profile">
         <div style={{ textAlign: "center" }}>
-          <img
-            className={classes.image}
-            src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
-            alt="profilepic"
-          />
+          <img className={classes.image} src={user?.pic} alt="profilepic" />
           <div className={classes.profile}>
             <p>{user?.name}</p>
             <p>{user?.email}</p>

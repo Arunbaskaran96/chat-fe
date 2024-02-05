@@ -10,6 +10,7 @@
 .middle{
    height: 75%;
    overflow-y: scroll;
+   position: relative;
 }
 .bottom{
     width: 100%;

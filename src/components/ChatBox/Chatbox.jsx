@@ -6,7 +6,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import Chat from "../chat/Chat";
 import { io } from "socket.io-client";
 
-const END_POINT = "http://localhost:8000";
+const END_POINT = "https://chatapi-d2fo.onrender.com";
 var socket, selectedChatCompare;
 export default function Chatbox() {
   const { currentChat, user, notification, setNotification } = ChatState();
@@ -18,6 +18,11 @@ export default function Chatbox() {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const typingRef = useRef();
+
+  useEffect(() => {
+    typingRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [isTyping]);
 
   useEffect(() => {
     if (currentChat != null) {
@@ -51,7 +56,7 @@ export default function Chatbox() {
       setLoading(true);
       try {
         const data = await fetch(
-          `http://localhost:8000/api/getMsg/${currentChat._id}`,
+          `https://chatapi-d2fo.onrender.com/api/getMsg/${currentChat._id}`,
           {
             method: "GET",
             headers: {
@@ -79,17 +84,20 @@ export default function Chatbox() {
   const sendmsgHandler = async (e) => {
     if (e.key === "Enter") {
       setMessage("");
-      const data = await fetch(`http://localhost:8000/api/sendmsg`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authUser.token,
-        },
-        body: JSON.stringify({
-          chatId: currentChat._id,
-          content: message,
-        }),
-      });
+      const data = await fetch(
+        `https://chatapi-d2fo.onrender.com/api/sendmsg`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authUser.token,
+          },
+          body: JSON.stringify({
+            chatId: currentChat._id,
+            content: message,
+          }),
+        }
+      );
       const result = await data.json();
       if (result.success === false) {
       } else {
@@ -111,7 +119,7 @@ export default function Chatbox() {
       socket.emit("typing", currentChat._id);
     }
     let lastTypingTime = new Date().getTime();
-    var timerLength = 5000;
+    var timerLength = 3000;
     setTimeout(() => {
       var timenow = new Date().getTime();
       var timeDiff = timenow - lastTypingTime;
@@ -144,7 +152,7 @@ export default function Chatbox() {
             <div></div>
           )}
           {isTyping && (
-            <div className={classes.typing}>
+            <div ref={typingRef} className={classes.typing}>
               <p>Typing....</p>
             </div>
           )}

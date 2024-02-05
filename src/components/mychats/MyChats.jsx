@@ -18,13 +18,16 @@ export default function MyChats() {
 
   const getChats = async () => {
     try {
-      const data = await fetch(`http://localhost:8000/api/fetchchats`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authUser.token,
-        },
-      });
+      const data = await fetch(
+        `https://chatapi-d2fo.onrender.com/api/fetchchats`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authUser.token,
+          },
+        }
+      );
       const result = await data.json();
       if (result.success === false) {
       } else {

@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./chat.module.css";
 import Header from "../../components/header/Header";
 import MyChats from "../../components/mychats/MyChats";
-import Message from "../../components/message/Message";
 import { ChatState } from "../../context/ChatProvider";
 import NoConversation from "../../components/noconversation/NoConversation";
 import Chatbox from "../../components/ChatBox/Chatbox";

@@ -16,7 +16,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await fetch("http://localhost:8000/api/login", {
+      const data = await fetch("https://chatapi-d2fo.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

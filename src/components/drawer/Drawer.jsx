@@ -15,7 +15,7 @@ export default function XDrawer() {
   const value = useDebounce(searchTerm);
   const { getItem } = useLocalStorage("user");
   const authUser = getItem();
-  const { user, currentChat, setCurrentChat } = ChatState();
+  const { setCurrentChat } = ChatState();
 
   useEffect(() => {
     if (searchTerm.trim() === "") {
@@ -28,7 +28,7 @@ export default function XDrawer() {
   const fetchUsers = async () => {
     try {
       const data = await fetch(
-        `http://localhost:8000/api/search?email=${searchTerm}`,
+        `https://chatapi-d2fo.onrender.com/api/search?email=${searchTerm}`,
         {
           method: "GET",
           headers: {
@@ -53,14 +53,17 @@ export default function XDrawer() {
 
   const clickHandler = async (item) => {
     try {
-      const data = await fetch(`http://localhost:8000/api/accesschat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authUser.token,
-        },
-        body: JSON.stringify({ userId: item._id }),
-      });
+      const data = await fetch(
+        `https://chatapi-d2fo.onrender.com/api/accesschat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authUser.token,
+          },
+          body: JSON.stringify({ userId: item._id }),
+        }
+      );
       const result = await data.json();
       if (result.success === false) {
       } else {

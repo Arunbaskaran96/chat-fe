@@ -32,7 +32,7 @@ export default function GroupChat() {
   const fetchUsers = async () => {
     try {
       const data = await fetch(
-        `http://localhost:8000/api/search?email=${searchTerm}`,
+        `https://chatapi-d2fo.onrender.com/api/search?email=${searchTerm}`,
         {
           method: "GET",
           headers: {
@@ -66,17 +66,20 @@ export default function GroupChat() {
   const groupHandler = async () => {
     try {
       const usersId = getUsersId(users);
-      const data = await fetch(`http://localhost:8000/api/groupchat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authUser.token,
-        },
-        body: JSON.stringify({
-          users: usersId,
-          chatName: chatName,
-        }),
-      });
+      const data = await fetch(
+        `https://chatapi-d2fo.onrender.com/api/groupchat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authUser.token,
+          },
+          body: JSON.stringify({
+            users: usersId,
+            chatName: chatName,
+          }),
+        }
+      );
       const result = await data.json();
       if (result.success === false) {
       } else {

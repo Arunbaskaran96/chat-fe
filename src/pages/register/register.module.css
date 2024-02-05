@@ -1,0 +1,99 @@
+.top{
+    background-color: white;
+    text-align: center;
+}
+.top p {
+    font-size: 28px;
+    padding: 8px 0px;
+}
+.container{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.form{
+    margin-top: 20px;
+    background-color: white;
+
+}
+
+.formTop{
+    display: flex;
+    align-items: center;
+
+}
+
+.login{
+    width: 50%;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 0px;
+    margin: 10px 20px;
+}
+
+.signup{
+    width: 50%;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    background-color: aqua;
+    margin: 10px 20px;
+    border-radius: 10px;
+    padding: 5px 0px;
+}
+
+.formContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.label{
+    font-size: 15px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+.input{
+    width: 330px;
+    height: 30px;
+    border: none;
+    &:focus{
+        outline: none;
+    }
+}
+.inputContainer{
+    border: 1px solid gray;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    margin-bottom: 5px;
+}
+
+@media only screen and (max-width:700px){
+    .container{
+        width: 100%;
+    }
+}
+
+.loginBtn{
+    background-color: brown;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}

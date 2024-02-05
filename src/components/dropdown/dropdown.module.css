@@ -1,0 +1,23 @@
+.dropdown{
+    position: absolute;
+    display: flex;
+    background-color: white;
+    width: 15%;
+    right: 10px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    top: 45px;
+    background-color: grey;
+    border-radius: 5px;
+    padding: 10px 0px;
+}
+.image{
+    height: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile{
+    font-size: 20px;
+}

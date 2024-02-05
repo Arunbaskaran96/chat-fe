@@ -1,0 +1,145 @@
+.container{
+    height: 100%;
+}
+
+.top{
+    height: 60px;
+    border-bottom: 1px solid grey;
+}
+
+.middle{
+   height: 75%;
+   overflow-y: scroll;
+}
+.bottom{
+    width: 100%;
+}
+.typing{
+    display: flex;
+    width: 100px;
+    background-color: rgb(165, 162, 162);
+    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.typing p{
+    color: white;
+}
+
+
+/* top */
+.leftArrow{
+    display: none;
+}
+.updateGroup{
+    background-color: rgba(3, 112, 3, 0.986);
+    margin-top: 15px;
+    width: 100%;
+    height: 38px;
+    color: wheat;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.topContainer{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.sender{
+    font-size: 24px;
+}
+.eyeIcon{
+    font-size: 24px;
+    cursor: pointer;
+}
+.img{
+    border-radius: 50%;
+    height: 180px;
+    aspect-ratio: 1/1;
+}
+.modaluser{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.userName{
+    font-size: 25px;
+}
+.userEmail{
+    font-size: 20px;
+}
+.groupModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.editBtn{
+    margin-top: 10px;
+    padding: 5px 30px;
+    background-color: rgb(214, 77, 77);
+    border: none;
+    cursor: pointer;
+}
+.editInput{
+    width: 100%;
+    height: 35px;
+}
+.editUser{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+.editUserImage{
+    height: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.suggestionContainer{
+    margin-top: 10px;
+}
+/* middle */
+
+.middleContainer{
+    padding: 5px 15px;
+}
+.chatName{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.users{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* bottom */
+
+.bottomInputContainer{
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 5px 10px;
+}
+.bottomInput{
+    width: 100%;
+    border: none;
+    height: 40px;
+    &:focus{
+        outline: none
+    }
+}
+
+@media only Screen and (max-width:700px){
+    .leftArrow{
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+    }
+}

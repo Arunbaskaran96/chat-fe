@@ -1,0 +1,43 @@
+.top{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top h6{
+    font-size: 20px;
+}
+
+.top div{
+    background-color:rgb(214, 213, 213);
+    padding: 5px;
+}
+.container{
+    height: 88vh;
+    overflow-y: scroll;
+}
+
+div button{
+    border: none;
+    background-color: transparent;
+}
+
+.user{
+    border: 1px solid grey;
+    margin: 5px 20px;
+    padding: 5px;
+    background-color: ghostwhite;
+    cursor: pointer;
+}
+.msg{
+    font-size: 13px;
+}
+.name{
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.currentChat{
+    background-color: teal;
+}

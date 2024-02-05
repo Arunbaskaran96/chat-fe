@@ -1,0 +1,32 @@
+.container{
+    width: 100%;
+}
+.chatContainer{
+    display: flex;
+    margin: 15px;
+
+    gap: 15px;
+}
+.left{
+    flex: 4;
+    height: 89vh;
+    background-color: white;
+    border-radius: 10px;
+}
+.right{
+    flex: 8;
+    height: 89vh;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+
+@media only screen and (max-width:700px){
+    .rightMobile{
+        display: none;
+    }
+    .leftMobile{
+        display: none;
+    }
+}

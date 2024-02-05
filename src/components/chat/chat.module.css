@@ -1,0 +1,22 @@
+.image{
+    height: 30px;
+    aspect-ratio: 1/1;
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0px;
+}
+.msg{
+    background-color: teal;
+    color: white;
+    padding: 1px 7px;
+    border-radius: 10px;
+}
+.own{
+    justify-content: flex-end;
+}

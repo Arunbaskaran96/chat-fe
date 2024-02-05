@@ -1,0 +1,12 @@
+.container{
+    background-color: teal;
+    padding: 1px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px;
+}
+.name{
+    font-size: 15px;
+}

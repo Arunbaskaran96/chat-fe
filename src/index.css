@@ -1,12 +1,26 @@
+[data-theme = "light"]{
+    --bg-color:#D1D1D1;
+    --text-color:#030303;
+    --bgcolor3:rgb(236, 230, 230);
+}
+
+[data-theme = "dark"]{
+    --bg-color:#1F1F1F;
+    --text-color:#D1D1D1;
+    --bg-color2:#1F1F1F;
+    --bgcolor3:#484848;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body{
-    background-image: url("/background.jpg");
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 

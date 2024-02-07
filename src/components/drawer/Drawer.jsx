@@ -80,7 +80,19 @@ export default function XDrawer() {
         <CiSearch />
         <p>Search User</p>
       </div>
-      <Drawer size="xs" opened={opened} onClose={close} withCloseButton={false}>
+      <Drawer
+        styles={{
+          body: {
+            padding: "0px",
+            paddingTop: "0px",
+          },
+        }}
+        size="sm"
+        opened={opened}
+        onClose={close}
+        withCloseButton={false}
+        overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+      >
         <div className={classes.container}>
           <div className={classes.top}>
             <h5>Search Users</h5>

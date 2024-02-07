@@ -8,25 +8,31 @@
     font-size: 20px;
 }
 
-.top div{
+/* .top div{
     background-color:rgb(214, 213, 213);
     padding: 5px;
-}
+} */
 .container{
-    height: 88vh;
-    overflow-y: scroll;
+    height: 89vh;
 }
 
 div button{
     border: none;
+    color: var(--text-color);
     background-color: transparent;
+}
+.bottom{
+    overflow-y: scroll;
+}
+.bottom::-webkit-scrollbar{
+    width: 1px;
 }
 
 .user{
     border: 1px solid grey;
     margin: 5px 20px;
     padding: 5px;
-    background-color: ghostwhite;
+    background-color: var(--bg-color2);
     cursor: pointer;
 }
 .msg{
@@ -40,4 +46,7 @@ div button{
 
 .currentChat{
     background-color: teal;
+}
+.container{
+    background-color: var(--bgcolor3);
 }

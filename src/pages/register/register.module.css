@@ -96,4 +96,8 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 10px;
+    &:disabled{
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
 }

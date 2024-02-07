@@ -108,26 +108,33 @@ export default function GroupChat() {
           <FaPlus />
         </span>
       </div>
-      <Modal opened={opened} onClose={close} withCloseButton={false}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <h3 className={classes.header}>Create Group Chat</h3>
-          <button onClick={groupHandler} className={classes.btn}>
-            Create
-          </button>
-        </div>
-        <div>
-          <input
-            className={classes.nameInput}
-            placeholder="Group Name"
-            type="text"
-            required
-            onChange={(e) => setChatName(e.target.value)}
-          />
+      <Modal
+        classNames={{ body: classes.modal }}
+        opened={opened}
+        onClose={close}
+        withCloseButton={false}
+      >
+        <div className={classes.modalContainer}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <h3 className={classes.header}>Create Group Chat</h3>
+            <button onClick={groupHandler} className={classes.btn}>
+              Create
+            </button>
+          </div>
+          <div>
+            <input
+              className={classes.nameInput}
+              placeholder="Group Name"
+              type="text"
+              required
+              onChange={(e) => setChatName(e.target.value)}
+            />
+          </div>
         </div>
         {users.length > 0 && (
           <div className={classes.pillContainer}>

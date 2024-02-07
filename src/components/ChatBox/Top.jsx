@@ -1,9 +1,9 @@
 import { FaEye } from "react-icons/fa";
 import classes from "./chatbox.module.css";
-import { Modal } from "@mantine/core";
+import { Drawer, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ChatState } from "../../context/ChatProvider";
-import { getSender } from "../../utils/helper";
+import { getSender, getSenderDetails } from "../../utils/helper";
 import Pill from "../pill/Pill";
 import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
@@ -22,7 +22,8 @@ function Top() {
   const authUser = getItem();
   const [suggestions, setSuggestions] = useState([]);
   const [usersSet, setUserSet] = useState(new Set());
-  const [deleteUserGrp, setDeleteUserGrp] = useState("");
+  const [senderDetails, setSenderDetail] = useState([]);
+
   const [addNewUser, setAddNewUser] = useState("");
 
   useEffect(() => {
@@ -46,6 +47,10 @@ function Top() {
       setUsers([]);
       setUserSet(new Set());
     }
+  }, [currentChat]);
+
+  useEffect(() => {
+    setSenderDetail(getSenderDetails(currentChat.users, authUser._id));
   }, [currentChat]);
 
   const getUserSet = () => {
@@ -96,7 +101,6 @@ function Top() {
       if (result.success === false) {
       } else {
         setAddNewUser("");
-        onclose();
       }
     } catch (error) {
       console.log(error);
@@ -106,7 +110,6 @@ function Top() {
   const deleteUser = async (item) => {
     setUsers(users.filter((user) => user._id != item._id));
     const updateUser = new Set(usersSet);
-    setDeleteUserGrp(item._id);
     updateUser.delete(item._id);
     setUserSet(new Set(updateUser));
     const data = await fetch(
@@ -126,13 +129,34 @@ function Top() {
     const result = await data.json();
     if (result.success === false) {
     } else {
-      setDeleteUserGrp("");
     }
   };
 
   const addUser = (item) => {
     setUsers([...users, item]);
     setUserSet(usersSet.add(item._id));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = await fetch(
+      `https://chatapi-d2fo.onrender.com/api/groupchatedit/${currentChat._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authUser.token,
+        },
+        body: JSON.stringify({ chatName: chatName, users: users }),
+      }
+    );
+    const result = await data.json();
+    if (result.success === false) {
+    } else {
+      setCurrentChat(result);
+      setEditGroup(true);
+      close();
+    }
   };
 
   return (
@@ -151,28 +175,91 @@ function Top() {
       <div className={classes.eyeIcon} onClick={open}>
         <FaEye />
       </div>
+
       {currentChat.isGroupChat === false && (
-        <Modal opened={opened} onClose={close} withCloseButton={false}>
+        <Drawer
+          position="right"
+          opened={opened}
+          onClose={close}
+          overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+          withCloseButton={false}
+          classNames={{ body: classes.drawer }}
+        >
           {currentChat.users
             .filter((item) => item._id != user._id)
             .map((user) => {
               return (
-                <div key={user._id} className={classes.modaluser}>
-                  <img className={classes.img} src={user.pic} />
-                  <h6 className={classes.userName}>{user.name}</h6>
-                  <p className={classes.userEmail}>{user.email}</p>
+                <div className={classes.userContainer}>
+                  <img
+                    className={classes.img}
+                    src={user.pic}
+                    alt={senderDetails[0]?.pic}
+                  />
+                  <h3 className={classes.userName}>
+                    Name : <span>{senderDetails[0]?.name}</span>
+                  </h3>
+                  <h5 className={classes.userEmail}>
+                    Email : <span>{senderDetails[0]?.email}</span>
+                  </h5>
                 </div>
               );
             })}
-        </Modal>
+        </Drawer>
       )}
+
       {currentChat.isGroupChat === true && (
-        <Modal opened={opened} onClose={close} withCloseButton={false}>
-          {editGroup ? (
-            <div className={classes.ediModal}>
+        <Drawer
+          position="right"
+          opened={opened}
+          onClose={close}
+          overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+          withCloseButton={false}
+          classNames={{ body: classes.drawer }}
+        >
+          {!editGroup ? (
+            <>
+              <div className={classes.chatNameContainer}>
+                <h3 className={classes.chatname}>{currentChat.chatName}</h3>
+              </div>
+              <div>
+                <h5 className={classes.members}>Members</h5>
+              </div>
+              <div>
+                {currentChat.users.map((item) => {
+                  return (
+                    <div key={item._id} className={classes.user}>
+                      <img
+                        className={classes.userpicture}
+                        src={item.pic}
+                        alt="userpic"
+                      />
+                      <h5 className={classes.groupusername}>
+                        {user._id === item._id ? "you" : item.name}
+                      </h5>
+                    </div>
+                  );
+                })}
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
+                  onClick={() => setEditGroup(true)}
+                  className={classes.editGrpBtn}
+                >
+                  Edit
+                </button>
+              </div>
+            </>
+          ) : (
+            <form onSubmit={handleSubmit}>
               <div>
                 <h6 style={{ fontSize: "20px" }}>Chat Name</h6>
-                <input className={classes.editInput} defaultValue={chatName} />
+                <div className={classes.editInputContainer}>
+                  <input
+                    className={classes.editInput}
+                    defaultValue={chatName}
+                    onChange={(e) => setChatName(e.target.value)}
+                  />
+                </div>
               </div>
               <h6 style={{ fontSize: "20px" }}>Users</h6>
               <div className={classes.users}>
@@ -185,7 +272,7 @@ function Top() {
                 })}
               </div>
               <h6 style={{ fontSize: "20px" }}>Select Users</h6>
-              <div>
+              <div className={classes.editInputContainer}>
                 <input
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -229,30 +316,9 @@ function Top() {
               ) : (
                 <></>
               )}
-            </div>
-          ) : (
-            <div className={classes.groupModal}>
-              <h5 className={classes.chatName}>{currentChat.chatName}</h5>
-              <div className={classes.users}>
-                {currentChat.users.map((item) => {
-                  return (
-                    <div key={item._id}>
-                      <Pill item={item} />
-                    </div>
-                  );
-                })}
-              </div>
-              <div>
-                <button
-                  onClick={() => setEditGroup(true)}
-                  className={classes.editBtn}
-                >
-                  Edit Group
-                </button>
-              </div>
-            </div>
+            </form>
           )}
-        </Modal>
+        </Drawer>
       )}
     </div>
   );

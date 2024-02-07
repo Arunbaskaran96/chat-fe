@@ -11,6 +11,7 @@
     background-color: grey;
     border-radius: 5px;
     padding: 10px 0px;
+    z-index: 100;
 }
 .image{
     height: 150px;
@@ -20,4 +21,10 @@
 }
 .profile{
     font-size: 20px;
+}
+.modal{
+    background-color: var(--bg-color);
+}
+.headermodal{
+    text-align: end;
 }

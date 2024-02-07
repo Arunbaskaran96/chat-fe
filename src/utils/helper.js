@@ -7,3 +7,13 @@ export const getUsersId = (users) => {
   users.map((item) => usersId.push(item._id));
   return usersId;
 };
+
+export const changeCapital = (name) => {
+  let str = name.split("");
+  str = str[0].toUpperCase();
+  return str.join("");
+};
+
+export const getSenderDetails = (users, userId) => {
+  return users.filter((item) => item._id != userId);
+};

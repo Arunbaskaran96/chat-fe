@@ -24,7 +24,18 @@ export default function Dropdown() {
         <hr />
         <p onClick={logoutHandler}>Logout</p>
       </div>
-      <Modal opened={opened} onClose={close} title="Profile">
+      <Modal
+        classNames={{ body: classes.modal, header: classes.headermodal }}
+        styles={{
+          header: {
+            backgroundColor: "var(--bg-color)",
+          },
+        }}
+        opened={opened}
+        onClose={close}
+        withCloseButton={false}
+        transitionProps={{ transition: "fade", duration: 200 }}
+      >
         <div style={{ textAlign: "center" }}>
           <img className={classes.image} src={user?.pic} alt="profilepic" />
           <div className={classes.profile}>

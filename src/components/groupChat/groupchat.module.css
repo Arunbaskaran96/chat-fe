@@ -9,12 +9,14 @@
 .nameInput{
     width: 100%;
     height: 30px;
+    background-color: var(--bg-color2);
     margin-bottom: 15px;
 }
 
 .input{
     width: 100%;
     height: 40px;
+    background-color: var(--bg-color2);
 }
 
 .inputContainer{
@@ -48,4 +50,13 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.modalContainer{
+    background-color: var(--bgcolor3);
+}
+
+.modal{
+    background-color: var(--bgcolor3);
+    padding: 15px;
 }
